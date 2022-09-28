@@ -3,13 +3,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {FaShoppingCart} from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+
+import {FaShoppingCart} from 'react-icons/fa';
+import {Link } from 'react-router-dom';
 
 const Header = () => {
+  const cartNumber = useSelector((state) => state.cartProducts.numberCart);
   return (
     <Navbar  bg="primary" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+       <Link to='/'><Navbar.Brand >React-Bootstrap</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"> 
@@ -24,8 +28,8 @@ const Header = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets"><FaShoppingCart/></Nav.Link>
-            
+            <Link to='/cart' className='customIcon'><FaShoppingCart color='#fff' size={26}/><p className='cartNumber' style={{color: '#fff'}}>{cartNumber}</p></Link>
+             
           </Nav>
         </Navbar.Collapse>
       </Container>

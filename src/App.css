@@ -12,3 +12,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.customIcon{
+  position: relative;
+}
+.cartNumber{
+  position: absolute;
+  right: -9px;
+  bottom: -12px;
+  margin: 0;
+}

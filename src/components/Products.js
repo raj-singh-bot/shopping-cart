@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setProducts } from '../actions'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import {addToCart} from '../actions/index'
 
 const Products = () => {
     const products = useSelector((state) => state.products.products);
@@ -15,7 +16,8 @@ const Products = () => {
             <Card.Body>
                 <Card.Title className="title">{item.title}</Card.Title>
                 <Card.Text className='desc'>{item.description}</Card.Text>
-                <Button variant="primary">Add to cart</Button>
+                <Card.Text>{item.price}$</Card.Text>
+                <Button variant="primary" onClick={() => dispatch(addToCart(item))} >Add to cart</Button>
             </Card.Body>
         </Card>
         </div>
