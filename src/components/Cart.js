@@ -12,6 +12,16 @@ const Cart = () => {
   const totalQuantityAmount = (quantity,price) => {
     return  quantity * price
   }
+
+  const getTotal = () => {
+    let totalQuantity = 0
+    let totalPrice = 0
+    cartProducts.cart.forEach(item => {
+      totalQuantity += item.quantity
+      totalPrice += item.price * item.quantity
+    })
+    return {totalPrice, totalQuantity}
+  }
   return (
     <div>
       <div className='col-lg-12'>
@@ -60,7 +70,7 @@ const Cart = () => {
                   <Button variant="default" onClick={() => dispatch(removeFromCart(item.id))}><AiFillDelete size={26} color='red'/></Button>
                 </div>
                 <div className='col-1'>
-                  <Card.Text>{totalQuantityAmount(item.quantity,item.price)}$</Card.Text>
+                  <Card.Text>{totalQuantityAmount(item.quantity,item.price).toFixed(2)}$</Card.Text>
                 </div>
                 </div>
                 </Card>
@@ -70,9 +80,14 @@ const Cart = () => {
         )
       })
     }
-    <div className='total'>
-              <p>total amount</p>
+    <div className='col-lg-3 mx-auto'>
+    <div className='total' style={{textAlign: 'end'}}>
+              <p >
+                total ({getTotal().totalQuantity} items) 
+                : <strong>${getTotal().totalPrice.toFixed(2)}</strong>
+              </p>
               </div>
+    </div>
     </div>
   )
 }

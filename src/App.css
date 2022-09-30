@@ -21,3 +21,7 @@
   bottom: -12px;
   margin: 0;
 }
+.singleFilter-option{
+  display: flex;
+  flex-direction: column;
+}
